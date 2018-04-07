@@ -206,7 +206,12 @@ void test_mergeSort(T arr[], int n) {
 		mergeSort(arr, n / 2);
 		mergeSort(arr + n / 2, n / 2 + 1);
 	}
-    	
+    
+    if (arr[n / 2 - 1] < arr[n / 2 ]) // 这是一个优化的点，另一个优化的点在于数据小到一定程度用插入排序
+    {
+       delete [] temp;
+	   return;	
+    }
 
 	int i = 0, j = n / 2, k = 0;
 	while (k < n) {

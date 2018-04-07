@@ -120,9 +120,7 @@ void shellSort(T arr[], int n)
 
 // 归并排序
 
-// 将arr[l...mid] 和arr[mid+1 ...r]两部分进行归并的具体实现
-// 要注意研究的对象是整个数组的一个片段, 每次递归修改的都是其中的一个片段，
-//  这样核心的数据结构就一目了然
+
 template<typename T>
 void __merge(T arr[], int l, int mid, int r)
 {
@@ -187,6 +185,51 @@ void mergeSort(T arr[], int n)
 {
 	__mergeSort(arr, 0, n - 1);
 }
+
+
+
+// 自己写的一个整体的一目了然的归并排序
+// 只用一个子函数就实现了归并排序
+template<typename T>
+void test_mergeSort(T arr[], int n) {
+
+	if (n <= 1)
+		return;
+	T * temp = new T[n];
+	if (n % 2 == 0) // 对奇数还是偶数的判断很重要
+    {
+		mergeSort(arr, n / 2);
+		mergeSort(arr + n / 2, n / 2);
+	}
+	else
+	{
+		mergeSort(arr, n / 2);
+		mergeSort(arr + n / 2, n / 2 + 1);
+	}
+    	
+
+	int i = 0, j = n / 2, k = 0;
+	while (k < n) {
+		if (i < n / 2 && j < n)
+		{
+			if (arr[i] < arr[j])
+				temp[k++] = arr[i++];
+			else
+				temp[k++] = arr[j++];
+		}
+		else if (i < n / 2)
+			temp[k++] = arr[i++];
+		else
+			temp[k++] = arr[j++];
+
+	}
+
+	for (int i = 0; i < n; i++)
+		arr[i] = temp[i];
+	delete[] temp;
+}
+
+
 
 
 // 自底向上的归并排序，这种排序方法并没有用到数组的那种通过索引直接找到值的操作，

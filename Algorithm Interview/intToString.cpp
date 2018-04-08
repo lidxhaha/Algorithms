@@ -8,7 +8,7 @@ string intToString(int num) {
 	}
 	string temp = "";
 	for (int i = s.size() - 1; i >= 0; i--)
-		temp += s[i];  //是不能用temp[i] = s[i]的
+		temp += s[i];  //是不能用temp[i] = s[i]的，这是因为temp.size()为0，如果temp的size和s一样，那么可以这样用。
 	return temp;
 
 }

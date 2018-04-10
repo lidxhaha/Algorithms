@@ -162,6 +162,7 @@ void __merge(T arr[], int l, int mid, int r)
 template<typename T>
 void __mergeSort(T arr[], int l, int r)
 {
+	// [l,r]是闭区间
 	// 这才是最最最最最最标准的递归过程。
 	if (l >= r) { return; } // 在数据量较小时，插入排序会比归并排序快（考虑时间复杂度前面的系数）
 							// 所以可以将返回条件设为 l-r<15,然后此时对这15个数据再用插入排序
@@ -213,7 +214,7 @@ void test_mergeSort(T arr[], int n) {
 	   return;	
     }
 
-	int i = 0, j = n / 2, k = 0;
+	int i = 0, j = n / 2, k = 0; // i,j分别是原数组的两段的待考察位置，k是新数组中待放数据的位置。
 	while (k < n) {
 		if (i < n / 2 && j < n)
 		{
@@ -296,9 +297,9 @@ void quickSort2(T arr[], int n)
 		i++;
 		j--;
 	}
-	swap(arr[0], arr[j]);
-	quickSort2(arr, j + 1);
-	quickSort2(arr + j + 1, n - j - 1);
+	swap(arr[0], arr[--j]);
+	quickSort2(arr, i + 1);
+	quickSort2(arr + i + 1, n - i - 1);
 }
 
 

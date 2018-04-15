@@ -32,7 +32,7 @@ public:
 
 	  //assert(size < capacity);
 
-       // 假设某次push_back时，调用了时间复杂度为O(n）的resize，那么是否认为push_back的时间复杂度为O(1)？
+       // 假设某次push_back时，调用了时间复杂度为O(n）的resize，那么是否认为push_back的时间复杂度为O(n)？
        // 不，这需要进行均摊时间复杂度分析，push_back的时间复杂度仍然是O(1)
        // 随着不断resize，均摊后push_back的时间复杂度仍为O(1),但是此时的O(1)已经比之前的O(1)的时间耗费要大了。 
 		if (size == capacity)
